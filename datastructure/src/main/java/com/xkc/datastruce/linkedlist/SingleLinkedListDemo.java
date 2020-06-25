@@ -1,5 +1,7 @@
 package com.xkc.datastruce.linkedlist;
 
+import lombok.Data;
+
 /**
  * 单链表
  *
@@ -12,10 +14,10 @@ public class SingleLinkedListDemo {
 //        singleLinkedList.add(new HeroNode(1, "宋江"));
 //        singleLinkedList.add(new HeroNode(2, "卢俊义"));
 //        singleLinkedList.add(new HeroNode(3, "吴用"));
-        singleLinkedList.addByOrder(new HeroNode(1, "宋江"));
-        singleLinkedList.addByOrder(new HeroNode(2, "卢俊义"));
-        singleLinkedList.addByOrder(new HeroNode(4, "林冲"));
-        singleLinkedList.addByOrder(new HeroNode(3, "吴用"));
+        singleLinkedList.addByOrder(new SingleLinkedList.HeroNode(1, "宋江"));
+        singleLinkedList.addByOrder(new SingleLinkedList.HeroNode(2, "卢俊义"));
+        singleLinkedList.addByOrder(new SingleLinkedList.HeroNode(4, "林冲"));
+        singleLinkedList.addByOrder(new SingleLinkedList.HeroNode(3, "吴用"));
 //        singleLinkedList.reverse();
 //        singleLinkedList.show();
         singleLinkedList.recursion();
@@ -149,48 +151,18 @@ class SingleLinkedList {
         System.out.println(node);
     }
 
-}
+    @Data
+    static class HeroNode {
 
-class HeroNode {
+        public int no;
+        public String nickName;
+        public HeroNode next;
 
-    public int no;
-    public String nickName;
-    public HeroNode next;
+        public HeroNode(int no, String nickName) {
+            this.no = no;
+            this.nickName = nickName;
+        }
 
-    public HeroNode(int no, String nickName) {
-        this.no = no;
-        this.nickName = nickName;
     }
 
-    public int getNo() {
-        return no;
-    }
-
-    public void setNo(int no) {
-        this.no = no;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
-    public HeroNode getNext() {
-        return next;
-    }
-
-    public void setNext(HeroNode next) {
-        this.next = next;
-    }
-
-    @Override
-    public String toString() {
-        return "HeroNode{" +
-                "no=" + no +
-                ", nickName='" + nickName + '\'' +
-                '}';
-    }
 }
