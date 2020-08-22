@@ -5,24 +5,24 @@ package com.xkc.datastruce.recursion;
  */
 public class Permutations {
 
-    private static final int[] nums = {1, 2, 3};
+    private static final int[] nums = {1, 2, 3, 4, 5, 6};
 
-    public static void displayPerm(int[] nums) {
-        for (int num : nums) {
-            System.out.print(num);
+    private static void swap(int[] nums, int start, int end) {
+        int tmp = nums[start];
+        nums[start] = nums[end];
+        nums[end] = tmp;
+    }
+
+    private static void displayNums() {
+        for (int i = 0; i < nums.length; i++) {
+            System.out.print(nums[i] + " ");
         }
         System.out.println();
     }
 
-    public static void swap(int[] arr, int i, int j) {
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
-
-    public static void perm(int[] nums, int start, int end) {
+    private static void perm(int[] nums, int start, int end) {
         if (start == end) {
-            displayPerm(nums);
+            displayNums();
         } else {
             for (int i = start; i <= end; i++) {
                 swap(nums, i, start);
