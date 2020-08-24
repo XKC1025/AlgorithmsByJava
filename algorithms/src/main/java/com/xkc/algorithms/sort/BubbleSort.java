@@ -7,10 +7,14 @@ import java.util.Arrays;
  */
 public class BubbleSort {
 
-    private static final int[] array = {20, 11, 10, 9, 3, -1, -2, -3};
 
     public static void main(String[] args) {
+        int[] array = {20, 11, 10, 9, 3, -1, -2, -3};
+        bubbleSort(array);
+        System.out.println(Arrays.toString(array));
+    }
 
+    private static void bubbleSort(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
             boolean swap = false;
             for (int j = 0; j < array.length - 1 - i; j++) {
@@ -21,9 +25,6 @@ public class BubbleSort {
                     swap = true;
                 }
             }
-
-            System.out.println("第" + (i + 1) + "次排序: " + Arrays.toString(array));
-
             if (!swap) {
                 break;
             }
