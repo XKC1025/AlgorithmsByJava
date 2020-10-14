@@ -172,7 +172,7 @@ class HeroNode {
     public HeroNode infixOrderSearch(int no) {
         HeroNode resNode = null;
         if (Objects.nonNull(this.left)) {
-            resNode = this.left.preOrderSearch(no);
+            resNode = this.left.infixOrderSearch(no);
         }
         if (Objects.nonNull(resNode)) {
             return resNode;
@@ -181,7 +181,7 @@ class HeroNode {
             return this;
         }
         if (Objects.nonNull(this.right)) {
-            resNode = this.right.preOrderSearch(no);
+            resNode = this.right.infixOrderSearch(no);
         }
         return resNode;
     }
@@ -190,13 +190,13 @@ class HeroNode {
     public HeroNode postOrderSearch(int no) {
         HeroNode resNode = null;
         if (Objects.nonNull(this.left)) {
-            resNode = this.left.preOrderSearch(no);
+            resNode = this.left.postOrderSearch(no);
         }
         if (Objects.nonNull(resNode)) {
             return resNode;
         }
         if (Objects.nonNull(this.right)) {
-            resNode = this.right.preOrderSearch(no);
+            resNode = this.right.postOrderSearch(no);
         }
         if (Objects.nonNull(resNode)) {
             return resNode;
