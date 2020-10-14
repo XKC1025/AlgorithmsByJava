@@ -1,4 +1,4 @@
-package com.xkc.algorithms.tree;
+package com.xkc.datastruce.tree;
 
 import lombok.Data;
 
