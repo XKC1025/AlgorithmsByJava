@@ -41,10 +41,13 @@ public class ThreadedBinaryTreeDemo {
 
         threadedBinaryTree.threadedNodes(heroNode1);
 
-        System.out.println(heroNode4.getRight());
-        System.out.println(heroNode5.getRight());
-        System.out.println(heroNode6.getLeft());
-        System.out.println(heroNode6.getRight());
+//        System.out.println(heroNode4.getRight());
+//        System.out.println(heroNode5.getRight());
+//        System.out.println(heroNode6.getLeft());
+//        System.out.println(heroNode6.getRight());
+
+        threadedBinaryTree.setRoot(heroNode1);
+        threadedBinaryTree.threadedBinaryTreeList();
 
     }
 
@@ -89,6 +92,32 @@ class ThreadedBinaryTree {
         // 线索化右子树
         threadedNodes(node.getRight());
     }
+
+    // 中序遍历线索化二叉树
+    public void threadedBinaryTreeList() {
+        // 存储当前遍历的节点
+        HeroNode2 node = root;
+
+        while (Objects.nonNull(node)) {
+            // 循环找到leftType = 1的节点
+            // 随着遍历会发生变化, 因为当leftType = 1时, 说明该节点是被线索化的处理后的有效节点
+            while (node.getLeftType() == 0) {
+                node = node.getLeft();
+            }
+            System.out.println(node);
+
+            // 如果当前节点的右指针指向的是后继节点, 就一直输出
+            while (node.getRightType() == 1) {
+                node = node.getRight();
+                System.out.println(node);
+            }
+
+            // 替换这个遍历的节点
+            node = node.getRight();
+        }
+
+    }
+
 }
 
 @Data
