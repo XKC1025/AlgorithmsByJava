@@ -15,12 +15,59 @@ public class Graph {
     private int[][] edges;
     // 表示边的数目
     private int numOfEdges;
+    // 定义给数组boolean[], 记录某个节点是否被访问
+    private boolean[] isVisited;
 
     public Graph(int n) {
         // 初始化矩阵
         edges = new int[n][n];
         vertexList = new ArrayList<>(n);
+        isVisited = new boolean[n];
         numOfEdges = 0;
+    }
+
+    // 得到第一个邻接节点的下标
+    public int getFirstNeighbor(int index) {
+        for (int i = 0; i < vertexList.size(); i++) {
+            if (edges[index][i] > 0) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // 根据前一个邻接节点的下标, 获取下一个邻接节点
+    public int getNextNeighbor(int v1, int v2) {
+        for (int i = v2 + 1; i < vertexList.size(); i++) {
+            if (edges[v1][i] > 0) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // 深度遍历优先  dfs
+    public void dfs(boolean[] isVisited, int i) {
+        System.out.print(getValueByIndex(i) + "->");
+        isVisited[i] = true;
+
+        int w = getFirstNeighbor(i);
+
+        while (w != -1) {
+            if (!isVisited[w]) {
+                dfs(isVisited, w);
+            }
+            w = getNextNeighbor(i, w);
+        }
+    }
+
+    public void dfs() {
+        // 遍历所有的节点进行回溯
+        for (int i = 0; i < getNumOfVertex(); i++) {
+            if(!isVisited[i]) {
+                dfs(isVisited, i);
+            }
+        }
     }
 
     // 插入节点
@@ -82,6 +129,9 @@ public class Graph {
         graph.insertEdge(1, 4, 1);
 
         graph.showGraph();
+
+        // 深度优先搜索W
+        graph.dfs();
     }
 
 }
